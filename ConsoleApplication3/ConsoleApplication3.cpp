@@ -10,25 +10,22 @@ using namespace std;
 int main()
 {
 
-	List list1;
+	List<Teacher> list1;
 
-	list1.AddElem(1);
-	list1.AddElem(2);
-	list1.AddElem(3);
-	list1.AddElem(6);
-	list1.AddElem(36);
-	list1.AddElem(1);
-	list1.AddElem(1296);
-	list1.AddElem(30);
-	list1.AddElem(50388480);
-
+	list1.AddElem(Teacher("Prilepkina", "Elena", "Gumarovna", "Matan", 1));
+	list1.AddElem(Teacher("Fedyunin", "Ilya", "Maximovich", "Ne matan", 2));
+	list1.AddElem(Teacher("Polishyuk", "Danil", "Vitalevich", "Prog", 3));
+	list1.AddElem(Teacher("f", "s", "s", "Matan", 6));
+	list1.AddElem(Teacher("g", "g", "g", "Matan", 36));
+	list1.AddElem(Teacher("e", "e", "e", "Matan", 2));
+	list1.AddElem(Teacher("r", "r", "r", "Matan", 2592));
+	
+	
 	list1.PrintList();
 	
-	auto it = list1.begin();
-	for (; it != nullptr; it = ++it) {
-		cout << *it << ' ';
+	for (ForwardIterator<Teacher> it = list1.begin(); it != nullptr; ++it) {
+		cout << "Cabinet: " << (*it).CabinetNumber << ", Teacher: " << (*it).teacher_surname << " " << (*it).teacher_name << " " << (*it).teacher_patronymic << ", Subject: " << (*it).teacher_subject << endl;
 	}
-	cout << endl;
 	
 	list1.DeleteList();
 	list1.PrintList();

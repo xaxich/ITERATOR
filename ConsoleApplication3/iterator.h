@@ -3,27 +3,30 @@
 #include <iostream>
 #include <cctype>
 
-
+template<typename T>
 class ForwardIterator {
-	Node* ptr;
+	Node<T>* ptr;
 
 public:
-	ForwardIterator(Node* startNode) : ptr(startNode) {}
-
-	int& operator* () {
+	ForwardIterator(Node<T>* startNode) : ptr(startNode) {}
+	T& operator* () {
 		return ptr->data;
 	}
 
-	ForwardIterator operator++() {
-		int pr = ptr->data;
-		Node* pt = ptr;
+	ForwardIterator<T> operator++() {
+		int pr = ptr->data.CabinetNumber;
+		Node<T>* pt = ptr;
 
 		while (pt->next != nullptr) {
-			pr *= pt->data;
+			pr *= pt->data.CabinetNumber;
 			pt = pt->next;
-			if (pt->data == pr) return pt;
+			if (pt->data.CabinetNumber == pr) { 
+				ptr = pt;
+				return *this;
+			};
 		}
-		return nullptr;
+		ptr = nullptr;
+		return *this;
 
 	}
 	bool operator==(const ForwardIterator& other)const {

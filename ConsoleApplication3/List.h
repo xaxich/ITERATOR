@@ -3,24 +3,27 @@
 #include <cctype>
 #include "Node.h"
 #include "iterator.h"
+#include "Teacher.h"
 using namespace std;
 
+template<typename T>
+
 class List {
-	Node* head = nullptr;
-	Node* tail = nullptr;
+	Node<T>* head = nullptr;
+	Node<T>* tail = nullptr;
 public:
-	friend std::ostream& operator <<(std::ostream& os, const Node& node);
-	using iterator = ForwardIterator;
+	friend std::ostream& operator <<(std::ostream& os, const Node<T>& node);
+	using iterator = ForwardIterator<T>;
 
 
-	void AddElem(int val) {
+	void AddElem(T val) {
 
 		if (!head) {
-			head = new Node(val);
+			head = new Node<T>(val);
 			tail = head;
 			return;
 		}
-		Node* current = new Node(val, nullptr, nullptr);
+		Node<T>* current = new Node<T>(val, nullptr, nullptr);
 		tail->next = current;
 		current->prev = tail;
 		tail = current;
@@ -38,8 +41,8 @@ public:
 			return;
 		}
 
-		for (Node* node = head; node != nullptr; node = node->next) {
-			cout << node->data << " ";
+		for (Node<T>* node = head; node != nullptr; node = node->next) {
+			cout << node->data.CabinetNumber << " ";
 		}
 		cout << '\n';
 	}
@@ -50,7 +53,7 @@ public:
 			return;
 		}
 		while (head->next != nullptr) {
-			Node* nodeDelete = head;
+			Node<T>* nodeDelete = head;
 			head = head->next;
 			delete nodeDelete;
 		}

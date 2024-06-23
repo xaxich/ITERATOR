@@ -1,10 +1,12 @@
 #pragma once
+
+template<typename T>
 struct Node {
-	int data;
 	Node* next;
 	Node* prev;
+	T data;
 
-	Node(int val, Node* next = nullptr, Node* prev = nullptr) :
+	Node(T val, Node* next = nullptr, Node* prev = nullptr) :
 		data(val), next(next), prev(prev) {}
 	;
 
